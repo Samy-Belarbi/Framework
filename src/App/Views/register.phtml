@@ -9,13 +9,17 @@
 
                 <p class="text-center h1 fw-bold mb-5 mx-1 mx-md-4 mt-4">Inscription</p>
 
-                <form class="mx-1 mx-md-4">
+                <form class="mx-1 mx-md-4" enctype="multipart/form-data" method="POST">
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-user fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
                       <input type="text" id="username" class="form-control" name="username" />
                       <label class="form-label" for="username">Username</label>
+                      <?php if (isset($_SESSION['wrongUsername'])) : ?>
+                        <?php unset($_SESSION['wrongUsername']) ?>
+                        <aside class="alert alert-danger">Veuillez insérer un username supérieur à 5 caractères</aside>
+                      <?php endif; ?>
                     </div>
                   </div>
 
@@ -24,22 +28,34 @@
                     <div class="form-outline flex-fill mb-0">
                       <input type="text" id="displayname" class="form-control" name="displayname" />
                       <label class="form-label" for="displayname">Nom d'affichage</label>
+                      <?php if (isset($_SESSION['wrongDisplayname'])) : ?>
+                        <?php unset($_SESSION['wrongDisplayname']) ?>
+                        <aside class="alert alert-danger">Veuillez insérer un nom d'affichage supérieur à 5 caractères</aside>
+                      <?php endif; ?>
                     </div>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="password" id="password1" class="form-control" name="password1" />
-                      <label class="form-label" for="password1">Mot de passe</label>
+                      <input type="password" id="password" class="form-control" name="password" />
+                      <label class="form-label" for="password">Mot de passe</label>
+                      <?php if (isset($_SESSION['wrongPassword'])) : ?>
+                        <aside class="alert alert-danger">Veuillez insérer un mot de passe supérieur à 5 caractères</aside>
+                        <?php unset($_SESSION['wrongPassword']) ?>
+                      <?php endif; ?>
                     </div>
                   </div>
 
                   <div class="d-flex flex-row align-items-center mb-4">
                     <i class="fas fa-key fa-lg me-3 fa-fw"></i>
                     <div class="form-outline flex-fill mb-0">
-                      <input type="file" id="profile-picture" class="form-control" name="profile-picture"/>
-                      <label class="form-label" for="profile-picture">Votre photo de profil</label>
+                      <input type="file" id="picture" class="form-control" name="picture" />
+                      <label class="form-label" for="picture">Votre photo de profil</label>
+                      <?php if (isset($_SESSION['wrongPicture'])) : ?>
+                        <?php unset($_SESSION['wrongPicture']) ?>
+                        <aside class="alert alert-danger">Si vous avez bien envoyé une image, celle-ci ne peut excéder 1MB et son extension doit être parmi celles autorisées (jpg, jpeg et png)</aside>
+                      <?php endif; ?>
                     </div>
                   </div>
 
@@ -52,8 +68,7 @@
               </div>
               <div class="col-md-10 col-lg-6 col-xl-7 d-flex align-items-center order-1 order-lg-2">
 
-                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp"
-                  class="img-fluid" alt="Sample image">
+                <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-registration/draw1.webp" class="img-fluid" alt="Sample image">
 
               </div>
             </div>

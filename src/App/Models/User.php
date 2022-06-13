@@ -7,6 +7,7 @@ class User {
     private string $username;
     private string $displayName;
     private string $password;
+    private string $plainPassword;
     private string $profilePicturePath;
 
     // SETTERS
@@ -27,6 +28,10 @@ class User {
         $this->password = $password;
     }
 
+    public function setPlainPassword(string $password) {
+        $this->plainPassword = $password;
+    }
+
     public function setProfilePicturePath(string $path) {
         $this->profilePicturePath = $path;
     }
@@ -38,7 +43,7 @@ class User {
     }
 
     public function getDisplayName() : string {
-        return $this->username;
+        return $this->displayName;
     }
 
     public function getPassword() : string {
@@ -51,5 +56,30 @@ class User {
 
     public function getProfilePicturePath() : string {
         return $this->profilePicturePath;
+    }
+
+    // VALIDATION 
+
+    public function validate(): bool
+    {
+        $validation = true;
+
+        if (strlen($this->username) < 5) {
+            $_SESSION['wrongUsername'] = true;
+            $validation = false;
+        }
+
+        if (strlen($this->displayName) < 5) {
+            $_SESSION['wrongDisplayname'] = true;
+            $validation = false;
+        }
+
+        if (strlen($this->plainPassword) < 8) {
+            $_SESSION['wrongPassword'] = true;
+            $validation = false;
+        }
+        
+        return $validation;
+
     }
 }
