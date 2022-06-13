@@ -24,4 +24,13 @@ class UserManager extends AbstractModel {
 
     }
 
+    public function findUser(User $user) : array {
+        $query = $this->db->getResults('SELECT * FROM users WHERE username = :username', [
+            'username' => $user->getUsername()
+        ]);
+
+        return $query;
+    }
+
+
 }

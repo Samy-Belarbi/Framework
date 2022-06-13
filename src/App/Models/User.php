@@ -50,6 +50,10 @@ class User {
         return $this->password;
     }
 
+    public function getPlainPassword() : string {
+        return $this->plainPassword;
+    }
+
     public function getId() : int {
         return $this->id;
     }
