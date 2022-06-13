@@ -3,6 +3,14 @@
 return [
     '/' => [
         'App\Controllers\HomeController',
-        'index'
+        'show'
     ],
+    '/register' => [
+        'App\Controllers\RegisterController',
+        'show'
+    ],
+    '/login' => [
+        'App\Controllers\LoginController',
+        'show'
+    ]
 ];
