@@ -5,6 +5,7 @@ namespace App\Models;
 class User {
     private int $id;
     private string $username;
+    private string $displayName;
     private string $password;
     private string $profilePicturePath;
 
@@ -18,6 +19,10 @@ class User {
         $this->username = $username;
     }
 
+    public function setDisplayName(string $displayName) {
+        $this->displayName = $displayName;
+    }
+
     public function setPassword(string $password) {
         $this->password = $password;
     }
@@ -29,6 +34,10 @@ class User {
     // GETTERS
 
     public function getUsername() : string {
+        return $this->username;
+    }
+
+    public function getDisplayName() : string {
         return $this->username;
     }
 

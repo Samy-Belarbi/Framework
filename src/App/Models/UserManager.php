@@ -20,10 +20,11 @@ class UserManager extends AbstractModel {
 
         try {
 
-            $query = $this->db->prepare('INSERT INTO Users (username, password, image) VALUES (:username, :password, image)');
+            $query = $this->db->prepare('INSERT INTO Users (username, password, display_name, image) VALUES (:username, :password, :displayName, image)');
             $query->execute([
                 'username' => $user->getUsername(),
                 'password' => $user->getPassword(),
+                'displayName' => $user->getDisplayName(),
                 'image' => $user->getProfilePicturePath()
             ]);
     
