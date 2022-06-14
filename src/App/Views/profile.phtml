@@ -1,0 +1,63 @@
+<h1>Votre profil</h1>
+
+<img src="../../../assets/<?= htmlentities($user->getProfilePicturePath()) ?>" alt="" style="width: 200px; border-radius: 100px">
+<p>Username : <?= htmlentities($user->getUsername()) ?></p>
+<p>Votre display name : <?= htmlentities($user->getDisplayName()) ?></p>
+
+<h2>Editer votre profil :</h2>
+
+<form class="mx-1 mx-md-4" enctype="multipart/form-data" method="POST">
+
+<div class="d-flex flex-row align-items-center mb-4">
+  <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+  <div class="form-outline flex-fill mb-0">
+    <input type="text" id="username" class="form-control" name="username" value="<?= htmlentities($user->getUsername()) ?>"/>
+    <label class="form-label" for="username">Username</label>
+    <?php if (isset($_SESSION['wrongUsername'])) : ?>
+      <?php unset($_SESSION['wrongUsername']) ?>
+      <aside class="alert alert-danger">Veuillez insérer un username supérieur à 5 caractères</aside>
+    <?php endif; ?>
+  </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+  <i class="fas fa-user fa-lg me-3 fa-fw"></i>
+  <div class="form-outline flex-fill mb-0">
+    <input type="text" id="displayname" class="form-control" name="displayname" value="<?= htmlentities($user->getDisplayName()) ?>"/>
+    <label class="form-label" for="displayname">Nom d'affichage</label>
+    <?php if (isset($_SESSION['wrongDisplayname'])) : ?>
+      <?php unset($_SESSION['wrongDisplayname']) ?>
+      <aside class="alert alert-danger">Veuillez insérer un nom d'affichage supérieur à 5 caractères</aside>
+    <?php endif; ?>
+  </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+  <i class="fas fa-lock fa-lg me-3 fa-fw"></i>
+  <div class="form-outline flex-fill mb-0">
+    <input type="password" id="password" class="form-control" name="password" />
+    <label class="form-label" for="password">Mot de passe</label>
+    <?php if (isset($_SESSION['wrongPassword'])) : ?>
+      <aside class="alert alert-danger">Veuillez insérer un mot de passe supérieur à 5 caractères</aside>
+      <?php unset($_SESSION['wrongPassword']) ?>
+    <?php endif; ?>
+  </div>
+</div>
+
+<div class="d-flex flex-row align-items-center mb-4">
+  <i class="fas fa-key fa-lg me-3 fa-fw"></i>
+  <div class="form-outline flex-fill mb-0">
+    <input type="file" id="picture" class="form-control" name="picture" />
+    <label class="form-label" for="picture">Votre photo de profil</label>
+    <?php if (isset($_SESSION['wrongPicture'])) : ?>
+      <?php unset($_SESSION['wrongPicture']) ?>
+      <aside class="alert alert-danger">Si vous avez bien envoyé une image, celle-ci ne peut excéder 1MB et son extension doit être parmi celles autorisées (jpg, jpeg et png)</aside>
+    <?php endif; ?>
+  </div>
+</div>
+
+<div class="d-flex justify-content-center mx-4 mb-3 mb-lg-4">
+  <button type="submit" class="btn btn-primary btn-lg">Modifier</button>
+</div>
+
+</form>
