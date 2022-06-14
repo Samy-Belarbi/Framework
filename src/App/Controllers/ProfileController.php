@@ -53,7 +53,8 @@ class ProfileController extends AbstractController
 
                 $fileName = uniqid();
 
-                array_map('unlink', glob('assets/' . $user->getProfilePicturePath()));
+                // array_map('unlink', glob('assets/' . $user->getProfilePicturePath()));
+                unlink('assets/' . $user->getProfilePicturePath());
                 move_uploaded_file($_FILES['picture']['tmp_name'], "assets/img/$fileName.$extension");
                 // (unlink la méthode pour supprimer les images)
 
