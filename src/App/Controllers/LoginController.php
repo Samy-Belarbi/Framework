@@ -26,7 +26,7 @@ class LoginController extends AbstractController
                 if (password_verify($user->getPlainPassword(), $data[0]['password'])) {
 
                     $_SESSION['user_id'] = $user->getId();
-                    header('Location:' . url('/login'));
+                    header('Location:' . url('/'));
                     exit();
 
                 } else {
@@ -36,6 +36,10 @@ class LoginController extends AbstractController
                 }   
 
                 
+            } else {
+                $_SESSION['wrongName'] = true;
+                header('Location:' . url('/login'));
+                exit();
             };
 
         }

@@ -12,5 +12,9 @@ return [
     '/login' => [
         'App\Controllers\LoginController',
         'show'
+    ],
+    '/logout' => [
+        'App\Controllers\LogoutController',
+        'logout'
     ]
 ];

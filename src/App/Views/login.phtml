@@ -12,6 +12,10 @@
                     <div class="form-outline mb-4">
                         <input type="text" id="form3Example3" class="form-control form-control-lg" placeholder="Votre username" name="username"/>
                         <label class="form-label" for="form3Example3">Votre username</label>
+                        <?php if(isset($_SESSION['wrongName'])) : ?>
+                            <p style="color:red">Identifiant inconnu</p>
+                        <?php unset($_SESSION['wrongName']) ?>
+                        <?php endif; ?>
                     </div>
 
                     <!-- Password input -->
@@ -19,7 +23,7 @@
                         <input type="password" id="form3Example4" class="form-control form-control-lg" placeholder="Entrez votre mot de passe" name="password"/>
                         <label class="form-label" for="form3Example4">Votre mot de passe</label>
                         <?php if(isset($_SESSION['wrongPassword'])) : ?>
-                            <p>Mauvais mot de passe</p>
+                            <p style="color:red">Mauvais mot de passe</p>
                         <?php unset($_SESSION['wrongPassword']) ?>
                         <?php endif; ?>
                     </div>
