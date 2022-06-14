@@ -35,9 +35,6 @@ class UserManager extends AbstractModel {
                 'id' => $user->getId()
             ]);
 
-            var_dump($query);
-            exit();
-
         } catch(PDOException $exception) {
             $error = 'Erreur :' . $exception->getMessage();
             echo $error;

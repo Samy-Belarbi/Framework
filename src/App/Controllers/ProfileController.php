@@ -19,15 +19,15 @@ class ProfileController extends AbstractController
         }
 
         if (isset($_POST['username'])) {
-            $user = new User();
-            $user->setId($_SESSION['user_id']);
-            $user->setUsername($_POST['username']);
-            $user->setDisplayName($_POST['displayname']);
-            $user->setPlainPassword($_POST['password']);
-            $user->setPassword(password_hash($_POST['password'], PASSWORD_ARGON2ID));
+            $userEdit = new User();
+            $userEdit->setId($_SESSION['user_id']);
+            $userEdit->setUsername($_POST['username']);
+            $userEdit->setDisplayName($_POST['displayname']);
+            $userEdit->setPlainPassword($_POST['password']);
+            $userEdit->setPassword(password_hash($_POST['password'], PASSWORD_ARGON2ID));
 
             if (
-                $user->validate()
+                $userEdit->validate()
                 && isset($_FILES['picture'])
             ) {
 
@@ -53,13 +53,14 @@ class ProfileController extends AbstractController
 
                 $fileName = uniqid();
 
+                array_map('unlink', glob('assets/' . $user->getProfilePicturePath()));
                 move_uploaded_file($_FILES['picture']['tmp_name'], "assets/img/$fileName.$extension");
                 // (unlink la méthode pour supprimer les images)
 
-                $user->setProfilePicturePath("img/$fileName.$extension");
+                $userEdit->setProfilePicturePath("img/$fileName.$extension");
 
                 $userManager = new UserManager();
-                $userManager->edit($user);
+                $userManager->edit($userEdit);
                 
                 header('Location:' . url('/profile'));
                 exit();

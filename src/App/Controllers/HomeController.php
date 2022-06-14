@@ -16,7 +16,7 @@ class HomeController extends AbstractController
         }
 
         $this->display('homepage', [
-            'name' => 'Toto',
+            'name' => htmlentities($user->getUsername()),
             'age' => 42,
             'user' => $user
         ]);
